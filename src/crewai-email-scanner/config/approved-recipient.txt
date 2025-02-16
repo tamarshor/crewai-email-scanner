@@ -1,0 +1,8 @@
+recipient@approved1.com
+recipient@approved2.com
+recipient@approved3.com
+recipient@approved4.com
+recipient@approved5.com
+recipient@approved6.com
+recipient@approved7.com
+recipient@approved8.com

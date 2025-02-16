@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run CrewAI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            max-width: 800px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .sample-section {
+            margin-top: 40px;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 5px;
+        }
+        .sample-box {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+        }
+        .sample-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Enter Details for CrewAI</h2>
+
+<form action="/run_crewai" method="post">
+    <label for="policy_text"><b>Policy Text:</b></label><br>
+    <textarea id="policy_text" name="policy_text" placeholder="Paste policy text here..." required></textarea><br>
+
+    <label for="email_body_text"><b>Email Body:</b></label><br>
+    <textarea id="email_body_text" name="email_body_text" placeholder="Paste email body here..." required></textarea><br>
+
+    <label for="attachment_text"><b>Attachment Text:</b></label><br>
+    <textarea id="attachment_text" name="attachment_text" placeholder="Paste extracted attachment text here..." required></textarea><br>
+
+    <label for="recipient_email"><b>Recipient Email:</b></label><br>
+    <input type="email" id="recipient_email" name="recipient_email" placeholder="Enter recipient's email..." required><br>
+
+    <button type="submit">Run CrewAI</button>
+</form>
+
+<!-- SAMPLE TEXTS SECTION -->
+<div class="sample-section">
+    <h3>Sample Texts</h3>
+
+    <!-- Policy Texts -->
+    <h4>📌 Sample Policy Texts</h4>
+    <div class="sample-box">
+External Email Data Protection Policy
+
+To maintain the confidentiality and security of our organization’s information, employees must refrain from including sensitive data in emails sent to external recipients. Sensitive data includes, but is not limited to, proprietary company information, financial records, trade secrets, intellectual property, internal strategies, and any data related to ongoing or future business operations that have not been publicly disclosed.
+
+Furthermore, personally identifiable information (PII) and any regulated data must not be shared via external emails unless explicitly authorized and properly encrypted. This includes employee and customer names, addresses, phone numbers, Social Security numbers, financial account details, medical records, and any information that could compromise individual privacy. Similarly, access credentials such as usernames, passwords, API keys, encryption keys, or multi-factor authentication codes must never be shared through external email channels. Employees should always use secure communication methods for transmitting any sensitive or confidential information outside the organization.
+    </div>
+
+    <!-- Email Samples -->
+    <h4>📌 Sample Email Body Texts & Violations</h4>
+
+    <div class="sample-box">
+Sample [1]:
+
+<b>Email Body:</b>
+
+Project Update – Q2 Progress
+
+Hi Team,
+
+I hope you're doing well. I wanted to provide a quick update on our Q2 progress. We’ve successfully completed the initial phase of development, and we’re on track to meet our milestones.
+
+Please let me know if you have any questions or if you'd like to discuss further.
+
+Best,  
+Tamar
+
+<b>Violations:</b>
+
+No violations.
+    </div>
+
+    <div class="sample-box">
+Sample [2]:
+
+<b>Email Body:</b>
+
+Upcoming Product Launch – Internal Strategy
+
+Hi,
+
+As we finalize our new product launch, I wanted to share some details on our pricing strategy. We plan to undercut the competition by 15% while leveraging exclusive distribution deals that haven't been announced yet. Please keep this confidential.
+
+Let me know if you have any concerns.
+
+Best,  
+Tamar
+
+<b>Violations:</b>
+
+- Reveals confidential business strategy (pricing and distribution deals), which should not be shared externally.
+    </div>
+
+    <div class="sample-box">
+Sample [3]:
+
+<b>Email Body:</b>
+
+Customer Transaction Details
+
+Hi,
+
+Please find attached the latest customer transaction details.
+
+Let me know if you need any adjustments.
+
+Best,  
+Tamar
+
+<b>Violations:</b>
+
+- References customer transaction details (PII-related), which should not be shared externally.  
+- Attachment contains personally identifiable information (names, phone numbers, payment details), violating data protection policies.
+    </div>
+
+    <div class="sample-box">
+Sample [4]:
+
+<b>Email Body:</b>
+
+Internal Financial Reports & Credentials
+
+Hi,
+
+Please review the attached internal financial report and login credentials for the new system.
+
+Best,  
+Tamar
+
+<b>Violations:</b>
+
+- Shares internal financial reports and projections, which are proprietary company information.  
+- Includes login credentials, which should never be shared over email.  
+- Attachments:  
+  - Attachment4a.pdf – contains financial statement (last quarter).  
+  - Attachment4b.pdf – internal projections for upcoming investor meeting.
+    </div>
+
+</div>
+
+<!-- SAMPLE ATTACHMENT TEXTS SECTION -->
+<div class="sample-section">
+    <h4>📌 Sample Attachment Texts & Violations</h4>
+
+    <div class="sample-box">
+Sample [3] - corresponds to Email Body 3:
+
+<b>Attachment Text:</b>
+
+Recent customer transactions:
+
+John Smith, 123 N Main St, $250, 12/3/2024  
+Jack Smith, 123 S Main St, $100, 12/5/2024  
+Mary Smith, 123 W Main St, $50, 12/7/2024  
+Allen Smith, 123 E Main St, $10, 12/9/2024  
+
+<b>Violations:</b>
+
+Contains personally identifiable information (names, phone numbers, payment details),  
+which violates data protection policies.
+    </div>
+
+    <div class="sample-box">
+Sample [4] - corresponds to Email Body 4:
+
+<b>Attachment Text:</b>
+
+Q2 2025 Business Performance Report  
+In the second quarter of 2025, the company saw a 12% increase in revenue compared to the  
+previous quarter, driven primarily by strong sales in the enterprise software division. Operational  
+efficiencies implemented earlier in the year led to a 5% reduction in overhead costs, improving  
+overall profitability. Customer retention also improved, with a churn rate decrease of 1.8 percentage  
+points.  
+
+<b>Violations:</b>
+
+Shares internal financial reports and projections, which are proprietary company information.
+    </div>
+
+</div>
+
+<!-- SAMPLE RECIPIENTS SECTION -->
+<div class="sample-section">
+    <h4>📌 Sample Recipients & Blocking Rules</h4>
+
+    <div class="sample-box">
+<b>Recipients That Will Be Blocked If Sensitive Data Exists:</b>
+
+recipient@blocked1.com  
+recipient@blocked2.com  
+    </div>
+
+    <div class="sample-box">
+<b>Recipients That Will Not Be Blocked Even If Sensitive Data Exists:</b>
+
+recipient@customer1.com  
+recipient@customer2.com  
+    </div>
+
+</div>
+
+</body>
+</html>
