@@ -1,32 +1,5 @@
 from crewai import Agent, Crew, Process, Task # type: ignore
 from crewai.project import CrewBase, agent, crew, task # type: ignore
-# from crewai_tools import PDFSearchTool # type: ignore
-import logging
-
-# Create a custom logger for your application (or for Crew AI if configurable)
-logger = logging.getLogger('crewAI')
-logger.setLevel(logging.DEBUG)  # Capture all levels; filtering is done in handlers
-
-# Create handlers
-console_handler = logging.StreamHandler()  # For main outputs (e.g., results)
-file_handler = logging.FileHandler('verbose_logs.txt')  # For verbose chain-of-thought
-
-# Set handler levels
-console_handler.setLevel(logging.INFO)  # Only show info and above on console
-file_handler.setLevel(logging.DEBUG)    # Capture debug (verbose) logs to file
-
-# Create formatters and assign them to handlers
-console_formatter = logging.Formatter('%(message)s')
-file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-console_handler.setFormatter(console_formatter)
-file_handler.setFormatter(file_formatter)
-
-# Add handlers to the logger
-logger.addHandler(console_handler)
-logger.addHandler(file_handler)
-
-
 
 @CrewBase
 class EmailScannerCrew():
@@ -150,16 +123,7 @@ class EmailScannerCrew():
     @crew
     def crew(self, verbose=False) -> Crew:
         """Creates the EmailScannerCrew crew"""
-        if verbose:
-            logger.debug("Starting Crew AI task with detailed reasoning (verbode = True) ...")
-    
-        # Simulate main processing and final output
-        result = "Final result of the task."
-        logger.info(result)
-    
-        if verbose:
-            logger.debug("Crew AI task completed with additional reasoning logs.")
-
+        
         return Crew(
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator

@@ -32,10 +32,10 @@ AttachmentScanner_PDF:
 
 RecipientCheck:
   role: Recipient Validation Specialist
-  goal: Verify whether the provided {recipient_email} exists in the {crm_customer_list}
-    and flag if the recipient is a customer.
-  backstory: Your expertise lies in matching email addresses against the customer
-    database, ensuring that communications to customers are handled per specific guidelines.
+  goal: Verify whether the provided {recipient_email} exists in the {approved_recipient_list}
+    and flag if the recipient is an approved recipient.
+  backstory: Your expertise lies in matching email addresses against the approved recipient 
+    list, ensuring that communications to approved recipients are handled per specific guidelines.
 
 DecisionMaker:
   role: Decision and Alert Specialist
