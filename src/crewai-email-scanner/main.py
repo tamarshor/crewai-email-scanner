@@ -1,15 +1,22 @@
 #!/usr/bin/env python
 import sys
+import os
 from crew import EmailScannerCrew
 from pathlib import Path
+from datetime import datetime
 from dotenv import load_dotenv # type: ignore
 # Load environment variables from .env
 load_dotenv()
 
 def run(user_inputs):
+    
     """
     Prepare the inputs for the crew.
     """
+    
+    """Returns the current timestamp in a nicely formatted string."""
+    timestamp_now = datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")
+
     # Get input values (provided by the user in the web form)
     policy_text = user_inputs.get("policy_text", "")
     email_body_text = user_inputs.get("email_body_text", "")
@@ -38,13 +45,13 @@ def run(user_inputs):
         'email_content': email_body_text,
         'attachments': attachment_text,
         'recipient_email': recipient_email,
-        'crm_customer_list': lines,
+        'approved_recipient_list': lines,
         'admin_email': 'tamarshor1@gmail.com',
         'sender_email': 'tamarshor1@gmail.com',
-        'timestamp': '2/14/2025 12:00:00 PM',
+        'timestamp': timestamp_now,
         'url_policy_rules': 'sample_value'
     }
-    
+
     """
     Run the crew with the inputs.
     using return result to send back the result to the web app to allow for user interaction 

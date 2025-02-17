@@ -39,18 +39,18 @@ scan_pdf_attachments_task:
   agent: AttachmentScanner_PDF
 
 check_recipient_task:
-  description: Compare {recipient_email} against the provided {crm_customer_list}
-    to determine if the recipient is a customer. Return an is_customer flag.
-  expected_output: 'A flag (is_customer: true/false) indicating whether {recipient_email}
-    exists in {crm_customer_list}.'
+  description: Compare {recipient_email} against the provided {approved_recipient_list}
+    to determine if the recipient is an approved recipient. Return an is_approved_recipient flag.
+  expected_output: 'A flag (is_approved_recipient: true/false) indicating whether {recipient_email}
+    exists in {approved_recipient_list}.'
   async_execution: false
   agent: RecipientCheck
 
 decision_and_alert_task:
   description: Analyze the flags from scan_email_body_task (body_sensitive_found),
-    scan_pdf_attachments_task (pdf_sensitive_found), and check_recipient_task (is_customer)
+    scan_pdf_attachments_task (pdf_sensitive_found), and check_recipient_task (is_approved_recipient)
     to decide whether to block or allow the email. If sensitive data is found and
-    the recipient is not a customer, block the email and trigger an alert to {admin_email}.
+    the recipient is not an approved recipient, block the email and trigger an alert to {admin_email}.
   expected_output: A decision outcome indicating whether the email is blocked or sent,
     along with details of any alert triggered.
   async_execution: false
